@@ -1,0 +1,84 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--AppStuff-->
+    <string name="app_name">LiquiCalcK</string>
+    <string name="by_author">by Toni Zinke</string>
+
+    <!--Navigation-->
+    <string name="nav_item_calc">Rechner</string>
+    <string name="nav_item_notices">Hinweise</string>
+    <string name="nav_item_aboutme">Über mich</string>
+    <string name="nav_group_communication">Kommunikation</string>
+    <string name="nav_item_share">Teilen</string>
+
+    <!--ContentDescription-->
+    <string name="deco">decoration</string>
+
+    <!--CalcFragment-->
+    <!--TextViews-->
+    <string name="zielkonzentration"><u>Zielkonzentration</u></string>
+    <string name="zielmenge"><u>Zielmenge</u></string>
+    <string name="shotkonzentration"><u>Shotkonzentration</u></string>
+    <string name="aromakonzentration"><u>Aromakonzentration</u></string>
+
+    <string name="percentSign">%</string>
+    <string name="nikotinUnit">mg/ml</string>
+    <string name="milliliterUnit">ml</string>
+
+    <string name="action_clear">Felder leeren</string>
+
+    <!--Buttons-->
+    <string name="calcButtonText">Berechnen</string>
+
+    <!--Result-->
+    <string name="aromamenge">Aromamenge</string>
+    <string name="shotmenge">Shotmenge</string>
+
+    <!--ToolTips-->
+    <string name="tooltipMenge">Wie viel Liquid wird gemischt?</string>
+    <string name="tooltipKonz">Wie viel Nikotin soll enthalten sein?</string>
+    <string name="tooltipShotKonz">Wie viel Nikotin ist in dem Shot enthalten?(steht auf der Packung)</string>
+    <string name="tooltipAroma">Wie viel Aroma soll in das  Liquid?(steht auf der Aromaflasche)</string>
+
+
+    <!--ResultActivity-->
+    <string name="result_text_head">Herzlichen Glückwunsch</string>
+    <string name="result_text">
+         Du hast ein dampfbares Liquid erschaffen!\nIn deinen Liquidbehälter gibst du\n\n
+         - %s Nikotinshot\n
+         - %s Aroma\n\nDen Rest füllst du mit Base auf.\n\nFertig ist dein Liquid. \nLass es dir schmecken!
+    </string>
+
+    <!--HinweisFragment-->
+    <string name="notice_headline">Hinweise zum DIY-Liquid</string>
+
+    <string name="notice_text_1">
+        Um dein Liquid zu mischen brauchst du einige Zutaten:\n
+        - <b>Base</b> (die Grundlage)\n
+        - <b>Aroma</b> (der Geschmack)\n
+        - <b>Leere Liquidflaschen</b> (der Behälter)\n
+        - <b>Spritzen</b> (das Werkzeug)\n\n
+        <i>Optional:\n
+        - Nikotin-Shots (die Sucht)</i>\n
+    </string>
+    <string name="notice_text_2">
+        All diese Zutaten bekommst du in jedem gut bestücktem Fachladen. Es gibt auch sehr gute Onlineshops, die dir eine große Auswahl an Dampfer-Equipment bieten.\n
+    </string>
+
+    <string name="notice_text_3">
+        In die leeren Liquidflaschen gibst du zuerst das berechnete Aroma oder, wenn nötig, dein Nikotinshot.\n
+        Am besten gelingt dir die Dosierung der Zutaten mit einer Spritze mit angezeichneter Messskala.\n
+        Nachdem du die Substanz(en) in deinen Behälter gegeben hast, kannst du den Rest mit Base aufgießen.
+    </string>
+
+    <string name="notice_text_warning">An dieser Stelle erstmal einige Warnhinweise:</string>
+
+    <string-array name="notice_warnings">
+        <item>- Beachte immer die Angaben der Hersteller.\n</item>
+        <item>- Wenn du mit Nikotin arbeitest, sei vorsichtig - Nikotin ist ein Nervengift und du arbeitest mit einer konzentrierten Lösung.\n</item>
+        <item>- Arbeite am Besten mit Einweg-Handschuhen. So verhinderst du deine Finger einzusauen. Es gibt nichts schlimmeres als Liquid an den Fingern zu haben.\n</item>
+        <item>- <b>Bewahre deine Chemikalien immer gesichert vor Kindern auf.</b>\n</item>
+    </string-array>
+</resources>

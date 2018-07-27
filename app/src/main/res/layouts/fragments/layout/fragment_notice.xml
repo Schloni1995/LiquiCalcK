@@ -1,0 +1,56 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:too1s="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    too1s:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.toni.liquidcalccompatible.fragments.NoticeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/notice_margin"
+        android:divider="@android:drawable/divider_horizontal_dark"
+        android:orientation="vertical"
+        android:showDividers="beginning|middle|end">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_headline"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_Headline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_text_warning"
+            android:textColor="@color/colorError"
+            android:textSize="@dimen/text_Warning" />
+
+        <com.example.toni.liquidcalccompatible.objects.NonScrollListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:drawable/divider_horizontal_textfield"
+            android:dividerHeight="1dp"
+            android:entries="@array/notice_warnings"
+            android:paddingBottom="@dimen/notice_margin"
+            android:theme="@style/ListFont" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_text_1"
+            android:textColor="@color/colorResult"
+            android:textSize="@dimen/text_Notice" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_text_2"
+            android:textColor="@color/colorResult"
+            android:textSize="@dimen/text_Notice" />
+
+    </LinearLayout>
+</ScrollView>
