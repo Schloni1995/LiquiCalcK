@@ -24,7 +24,6 @@ import java.util.*
  */
 class CalcFragment : Fragment() {
     private val calculator = Calculator()
-    private var view: View? = null
     private var zielMengeET: EditText? = null
     private var zielKonzET: EditText? = null
     private var konzShotET: EditText? = null
@@ -43,46 +42,47 @@ class CalcFragment : Fragment() {
     private var nicFail: Boolean = false
     private var shotFail: Boolean = false
     private var aromaFail: Boolean = false
+    private var thisView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        view = inflater!!.inflate(R.layout.fragment_calc, container, false)
+        thisView = inflater.inflate(R.layout.fragment_calc, container, false)
         firstInit()
         // Inflate the layout for this fragment
-        return view
+        return thisView
     }
 
 
     private fun firstInit() {
         setHasOptionsMenu(true)
-        errorColor = ContextCompat.getColor(activity, R.color.colorError)
-        edittextColor = ContextCompat.getColor(activity, R.color.white)
-        resultColor = ContextCompat.getColor(activity, R.color.colorResult)
+        errorColor = ContextCompat.getColor(context!!, R.color.colorError)
+        edittextColor = ContextCompat.getColor(context!!, R.color.white)
+        resultColor = ContextCompat.getColor(context!!, R.color.colorResult)
 
-        zielMengeET = view!!.findViewById(R.id.zielmenge)
-        zielKonzET = view!!.findViewById(R.id.zielkonz)
-        konzShotET = view!!.findViewById(R.id.shotkonz)
-        konzAromaET = view!!.findViewById(R.id.aromakonz)
+        zielMengeET = thisView!!.findViewById(R.id.zielmenge)
+        zielKonzET = thisView!!.findViewById(R.id.zielkonz)
+        konzShotET = thisView!!.findViewById(R.id.shotkonz)
+        konzAromaET = thisView!!.findViewById(R.id.aromakonz)
 
-        val calcButton = view!!.findViewById<Button>(R.id.calcButton)
+        val calcButton = thisView!!.findViewById<Button>(R.id.calcButton)
         calcButton.setOnClickListener(onClickBtn())
 
         LOG.outInfo("Installed SDK", "SDK: " + Build.VERSION.SDK_INT)
         LOG.outInfo("Needed SDK", "Version: " + Build.VERSION_CODES.O)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val zielmengeTV = view!!.findViewById<TextView>(R.id.zielmengeTV)
-            val zielKonzTV = view!!.findViewById<TextView>(R.id.zielKonzTV)
-            val shotKonzTV = view!!.findViewById<TextView>(R.id.shotKonzTV)
-            val aromaKonzTV = view!!.findViewById<TextView>(R.id.aromaKonzTV)
+            val zielmengeTV = thisView!!.findViewById<TextView>(R.id.zielmengeTV)
+            val zielKonzTV = thisView!!.findViewById<TextView>(R.id.zielKonzTV)
+            val shotKonzTV = thisView!!.findViewById<TextView>(R.id.shotKonzTV)
+            val aromaKonzTV = thisView!!.findViewById<TextView>(R.id.aromaKonzTV)
             zielmengeTV.tooltipText = resources.getString(R.string.tooltipMenge)
             zielKonzTV.tooltipText = resources.getString(R.string.tooltipKonz)
             shotKonzTV.tooltipText = resources.getString(R.string.tooltipShotKonz)
             aromaKonzTV.tooltipText = resources.getString(R.string.tooltipAroma)
         }
 
-        resultAromaTV = view!!.findViewById(R.id.aromaMengetextView)
-        resultShotTV = view!!.findViewById(R.id.shotMengetextView)
+        resultAromaTV = thisView!!.findViewById(R.id.aromaMengetextView)
+        resultShotTV = thisView!!.findViewById(R.id.shotMengetextView)
         resultAromaTV!!.setOnClickListener(onClickResult())
         resultShotTV!!.setOnClickListener(onClickResult())
 
@@ -101,7 +101,7 @@ class CalcFragment : Fragment() {
 
         konzAromaET!!.setOnKeyListener { v, keyCode, event ->
             if (KeyEvent.KEYCODE_ENTER == keyCode) {
-                val calcButton = view!!.findViewById<Button>(R.id.calcButton)
+                val calcButton = thisView!!.findViewById<Button>(R.id.calcButton)
                 calcButton.performClick()
                 closeVirtualKeyboard()
                 true
@@ -111,22 +111,18 @@ class CalcFragment : Fragment() {
     }
 
     private fun closeVirtualKeyboard() {
-        val inputManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        if (activity.currentFocus != null) {
-            assert(inputManager != null) //Asserts are intended for debug code, and not for release time code.
-            inputManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
+        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(activity?.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     private fun onClickBtn(): View.OnClickListener {
         return View.OnClickListener {
             closeVirtualKeyboard()
 
-            val liquidMenge = zielMengeET!!.text.toString().trim { it <= ' ' }
-            val liquidKonz = zielKonzET!!.text.toString().trim { it <= ' ' }
-            val shotKonz = konzShotET!!.text.toString().trim { it <= ' ' }
-            val aromaKonz = konzAromaET!!.text.toString().trim { it <= ' ' }
+            val liquidMenge = zielMengeET!!.text.toString()
+            val liquidKonz = zielKonzET!!.text.toString()
+            val shotKonz = konzShotET!!.text.toString()
+            val aromaKonz = konzAromaET!!.text.toString()
 
             resetFails()
             checkTextValidation(liquidMenge, liquidKonz, shotKonz, aromaKonz)
@@ -158,9 +154,9 @@ class CalcFragment : Fragment() {
         nonFail = !(liquidFail || nicFail || shotFail || aromaFail)
     }
 
-    private fun inputNotValid(input: String): Boolean {
-        return input.isEmpty()
-    }
+    private fun inputNotValid(input: String): Boolean = input.isEmpty()
+
+    //private fun String.isEmpty() = this.length == 0
 
     private fun handleFails() {
         if (!nonFail) {
@@ -289,7 +285,7 @@ class CalcFragment : Fragment() {
 
     companion object {
         private val LOG = MyLogger()
-        private val DIGIT = "[0-9]+(\\.[0-9]+)?"
+        private const val DIGIT = "[0-9]+(\\.[0-9]+)?" // für reg-ex
     }
 
 }// Required empty public constructor

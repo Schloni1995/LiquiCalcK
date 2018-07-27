@@ -13,12 +13,9 @@ import com.example.toni.liquidcalccompatible.R
  * A simple [Fragment] subclass.
  */
 class NoticeFragment : Fragment() {
-    internal var view: View
-
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        view = inflater!!.inflate(R.layout.fragment_notice, container, false)
+        val view = inflater.inflate(R.layout.fragment_notice, container, false)
         init()
         return view
     }

@@ -3,6 +3,11 @@
   <component name="Kotlin2JvmCompilerArguments">
     <option name="jvmTarget" value="1.8" />
   </component>
+  <component name="KotlinCommonCompilerArguments">
+    <option name="errors">
+      <ArgumentParseErrors />
+    </option>
+  </component>
   <component name="KotlinCompilerSettings">
     <option name="additionalArguments" value="-version --stacktrace --debug" />
   </component>
