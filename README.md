@@ -1,2 +1,2 @@
-# LiquidCalcK
+# LiquiCalcK
 LiquiCalc in Kotlin
