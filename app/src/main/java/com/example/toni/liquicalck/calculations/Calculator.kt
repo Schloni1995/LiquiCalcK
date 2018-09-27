@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.calculations
+package com.example.toni.liquicalck.calculations
 
 /**
  * Created by Toni on 07.03.2018.

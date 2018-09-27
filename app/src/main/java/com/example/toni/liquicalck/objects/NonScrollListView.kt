@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.objects
+package com.example.toni.liquicalck.objects
 
 import android.content.Context
 import android.util.AttributeSet

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     too1s:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.toni.liquidcalccompatible.activities.ResultActivity">
+    tools:context="com.example.toni.liquicalck.activities.ResultActivity">
 
     <TextView
         android:layout_width="match_parent"

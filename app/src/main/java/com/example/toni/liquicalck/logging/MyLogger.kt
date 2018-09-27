@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.logging
+package com.example.toni.liquicalck.logging
 
 import android.util.Log
 

@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.activities
+package com.example.toni.liquicalck.activities
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -10,9 +10,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import com.example.toni.liquicalck.fragments.CalcFragment
+import com.example.toni.liquicalck.fragments.NoticeFragment
 import com.example.toni.liquidcalccompatible.R
-import com.example.toni.liquidcalccompatible.fragments.CalcFragment
-import com.example.toni.liquidcalccompatible.fragments.NoticeFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

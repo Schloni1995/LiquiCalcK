@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.fragments
+package com.example.toni.liquicalck.fragments
 
 
 import android.os.Bundle

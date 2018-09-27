@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.activities
+package com.example.toni.liquicalck.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

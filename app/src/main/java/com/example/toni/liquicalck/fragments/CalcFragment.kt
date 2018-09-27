@@ -1,4 +1,4 @@
-package com.example.toni.liquidcalccompatible.fragments
+package com.example.toni.liquicalck.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -13,10 +13,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.toni.liquicalck.activities.ResultActivity
+import com.example.toni.liquicalck.calculations.Calculator
+import com.example.toni.liquicalck.logging.MyLogger
 import com.example.toni.liquidcalccompatible.R
-import com.example.toni.liquidcalccompatible.activities.ResultActivity
-import com.example.toni.liquidcalccompatible.calculations.Calculator
-import com.example.toni.liquidcalccompatible.logging.MyLogger
 import java.util.*
 
 /**
@@ -99,10 +99,10 @@ class CalcFragment : Fragment() {
         resultAromaTV!!.visibility = View.INVISIBLE
         resultShotTV!!.visibility = View.INVISIBLE
 
-        konzAromaET!!.setOnKeyListener { v, keyCode, event ->
+        konzAromaET!!.setOnKeyListener { _, keyCode, _ ->
             if (KeyEvent.KEYCODE_ENTER == keyCode) {
-                val calcButton = thisView!!.findViewById<Button>(R.id.calcButton)
-                calcButton.performClick()
+                val calcButtonTemp = thisView!!.findViewById<Button>(R.id.calcButton)
+                calcButtonTemp.performClick()
                 closeVirtualKeyboard()
                 true
             } else
@@ -285,7 +285,7 @@ class CalcFragment : Fragment() {
 
     companion object {
         private val LOG = MyLogger()
-        private const val DIGIT = "[0-9]+(\\.[0-9]+)?" // für reg-ex
+//        private const val DIGIT = "[0-9]+(\\.[0-9]+)?" // für reg-ex
     }
 
 }// Required empty public constructor

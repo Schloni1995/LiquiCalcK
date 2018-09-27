@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     too1s:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.toni.liquidcalccompatible.fragments.NoticeFragment">
+    tools:context="com.example.toni.liquicalck.fragments.NoticeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:textColor="@color/colorError"
             android:textSize="@dimen/text_Warning" />
 
-        <com.example.toni.liquidcalccompatible.objects.NonScrollListView
+        <com.example.toni.liquicalck.objects.NonScrollListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
