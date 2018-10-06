@@ -35,8 +35,8 @@ class CalcFragment : Fragment() {
     private var errorColor: Int = 0
     private var edittextColor: Int = 0
     private var resultColor: Int = 0
-    private var shotMenge: Double = 0.toDouble()
-    private var aromaMenge: Double = 0.toDouble()
+    private var shotMenge: Double = 0.0
+    private var aromaMenge: Double =0.0
     private var nonFail: Boolean = false
     private var liquidFail: Boolean = false
     private var nicFail: Boolean = false
@@ -67,8 +67,8 @@ class CalcFragment : Fragment() {
         val calcButton = thisView!!.findViewById<Button>(R.id.calcButton)
         calcButton.setOnClickListener(onClickBtn())
 
-        LOG.outInfo("Installed SDK", "SDK: " + Build.VERSION.SDK_INT)
-        LOG.outInfo("Needed SDK", "Version: " + Build.VERSION_CODES.O)
+//        LOG.outInfo("Installed SDK", "SDK: " + Build.VERSION.SDK_INT)
+//        LOG.outInfo("Needed SDK", "Version: " + Build.VERSION_CODES.O)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val zielmengeTV = thisView!!.findViewById<TextView>(R.id.zielmengeTV)
@@ -146,17 +146,15 @@ class CalcFragment : Fragment() {
         if (inputNotValid(shotKonz)) setShotFail()
         if (inputNotValid(aromaKonz)) setAromaFail()
 
-        Log.d("checkTextValidation", java.lang.Boolean.toString(liquidFail) + "(liq), " +
+        /*Log.d("checkTextValidation", java.lang.Boolean.toString(liquidFail) + "(liq), " +
                 java.lang.Boolean.toString(nicFail) + "(nic), " +
                 java.lang.Boolean.toString(shotFail) + "(sho), " +
-                java.lang.Boolean.toString(aromaFail) + "(aro)")
+                java.lang.Boolean.toString(aromaFail) + "(aro)")*/
 
         nonFail = !(liquidFail || nicFail || shotFail || aromaFail)
     }
 
     private fun inputNotValid(input: String): Boolean = input.isEmpty()
-
-    //private fun String.isEmpty() = this.length == 0
 
     private fun handleFails() {
         if (!nonFail) {
@@ -239,7 +237,7 @@ class CalcFragment : Fragment() {
     private fun clearText() {
         zielMengeET!!.setText("")
         zielKonzET!!.setText("")
-        konzShotET!!.setText(String.format("%s", resources.getInteger(R.integer.shotDefault).toString()))
+        konzShotET!!.setText("${resources.getInteger(R.integer.shotDefault)}")
         konzAromaET!!.setText("")
         resetFails()
     }
