@@ -8,15 +8,11 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.MenuItem
+import com.example.toni.liquicalck.firebaseOperations.FirebaseOperations
 import com.example.toni.liquicalck.fragments.CalcFragment
 import com.example.toni.liquicalck.fragments.NoticeFragment
 import com.example.toni.liquidcalccompatible.R
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,32 +36,10 @@ class StartActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val menuItem = navigationView.menu.findItem(R.id.nav_calc)
         onNavigationItemSelected(menuItem)
 
-        firebaseOperation()
+        FirebaseOperations().test()
     }
 
-    private fun firebaseOperation() {
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
 
-        myRef.setValue("Hello, World!")
-        Log.d("Firebase", "Value inserted")
-
-
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>(String::class.java)
-                Log.d("Firebase", "Value is: " + value!!)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("Firebase", "Failed to read value.", error.toException())
-            }
-        })
-    }
 
 
     override fun onBackPressed() {
