@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -15,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.toni.liquicalck.activities.ResultActivity
 import com.example.toni.liquicalck.calculations.Calculator
-import com.example.toni.liquicalck.logging.MyLogger
 import com.example.toni.liquidcalccompatible.R
 import java.util.*
 
@@ -282,8 +280,7 @@ class CalcFragment : Fragment() {
     }
 
     companion object {
-        private val LOG = MyLogger()
-//        private const val DIGIT = "[0-9]+(\\.[0-9]+)?" // für reg-ex
+        //        private const val DIGIT = "[0-9]+(\\.[0-9]+)?" // für reg-ex
     }
 
 }// Required empty public constructor
