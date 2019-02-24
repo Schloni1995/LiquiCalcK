@@ -127,7 +127,10 @@ class CalcFragment : Fragment() {
             if (nonFail || !liquidFail && !aromaFail)
                 aromaMenge = calculator.calcAromaMenge(liquidMenge, aromaKonz)
 
-            FailHandler().handleGui(nonFail, aromaFail, activity, konzAromaET, errorColor, resultColor, resultShotTV, shotMengetextViewText, shotMenge, nicFail, zielKonzET, resultAromaTV, liquidFail, aromaMengetextViewText, aromaMenge, zielMengeET, shotFail, konzShotET)
+            FailHandler().handleGui(nonFail, aromaFail, activity, konzAromaET, errorColor,
+                    resultColor, resultShotTV, shotMengetextViewText, shotMenge, nicFail,
+                    zielKonzET, resultAromaTV, liquidFail, aromaMengetextViewText, aromaMenge,
+                    zielMengeET, shotFail, konzShotET)
         }
 
     }
