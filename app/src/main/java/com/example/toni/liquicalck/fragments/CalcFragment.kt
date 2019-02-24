@@ -11,9 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.example.toni.liquicalck.activities.ResultActivity
 import com.example.toni.liquicalck.calculations.Calculator
+import com.example.toni.liquicalck.failHandling.FailHandler
 import com.example.toni.liquidcalccompatible.R
 import java.util.*
 
@@ -34,7 +34,7 @@ class CalcFragment : Fragment() {
     private var edittextColor: Int = 0
     private var resultColor: Int = 0
     private var shotMenge: Double = 0.0
-    private var aromaMenge: Double =0.0
+    private var aromaMenge: Double = 0.0
     private var nonFail: Boolean = false
     private var liquidFail: Boolean = false
     private var nicFail: Boolean = false
@@ -64,9 +64,6 @@ class CalcFragment : Fragment() {
 
         val calcButton = thisView!!.findViewById<Button>(R.id.calcButton)
         calcButton.setOnClickListener(onClickBtn())
-
-//        LOG.outInfo("Installed SDK", "SDK: " + Build.VERSION.SDK_INT)
-//        LOG.outInfo("Needed SDK", "Version: " + Build.VERSION_CODES.O)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val zielmengeTV = thisView!!.findViewById<TextView>(R.id.zielmengeTV)
@@ -125,15 +122,12 @@ class CalcFragment : Fragment() {
             resetFails()
             checkTextValidation(liquidMenge, liquidKonz, shotKonz, aromaKonz)
 
-            //TODO Hiier  Kommas druch Punktersetzen
-            //TODO Doppelkonn / - punkt verhindern
-
             if (nonFail || !liquidFail && !shotFail && !nicFail)
                 shotMenge = calculator.calcShotMenge(liquidMenge, liquidKonz, shotKonz)
             if (nonFail || !liquidFail && !aromaFail)
                 aromaMenge = calculator.calcAromaMenge(liquidMenge, aromaKonz)
 
-            handleFails()
+            FailHandler().handleGui(nonFail, aromaFail, activity, konzAromaET, errorColor, resultColor, resultShotTV, shotMengetextViewText, shotMenge, nicFail, zielKonzET, resultAromaTV, liquidFail, aromaMengetextViewText, aromaMenge, zielMengeET, shotFail, konzShotET)
         }
 
     }
@@ -144,64 +138,56 @@ class CalcFragment : Fragment() {
         if (inputNotValid(shotKonz)) setShotFail()
         if (inputNotValid(aromaKonz)) setAromaFail()
 
-        /*Log.d("checkTextValidation", java.lang.Boolean.toString(liquidFail) + "(liq), " +
-                java.lang.Boolean.toString(nicFail) + "(nic), " +
-                java.lang.Boolean.toString(shotFail) + "(sho), " +
-                java.lang.Boolean.toString(aromaFail) + "(aro)")*/
-
         nonFail = !(liquidFail || nicFail || shotFail || aromaFail)
     }
 
     private fun inputNotValid(input: String): Boolean = input.isEmpty()
 
-    private fun handleFails() {
-        if (!nonFail) {
-            if (aromaFail) {
-                Toast.makeText(activity, "Fehler bei der Aromakonzentration", Toast.LENGTH_SHORT).show()
-                konzAromaET!!.setBackgroundColor(errorColor)
-                resultShotTV!!.setBackgroundColor(resultColor)
-                resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
-                resultShotTV!!.visibility = View.VISIBLE
-            }
-            if (nicFail) {
-                Toast.makeText(activity, "Fehler bei der Zielkonzentration.", Toast.LENGTH_SHORT).show()
-                zielKonzET!!.setBackgroundColor(errorColor)
-
-                resultAromaTV!!.setBackgroundColor(resultColor)
-                resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
-                resultAromaTV!!.visibility = View.VISIBLE
-            }
-            if (liquidFail) {
-                Toast.makeText(activity, "Fehler bei der Zielliquidmenge", Toast.LENGTH_SHORT).show()
-                zielMengeET!!.setBackgroundColor(errorColor)
-
-                resultShotTV!!.setBackgroundColor(resultColor)
-                resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
-                resultShotTV!!.visibility = View.VISIBLE
-            }
-            if (shotFail) {
-                Toast.makeText(activity, "Fehler bei der Shotkonzentration", Toast.LENGTH_SHORT).show()
-                konzShotET!!.setBackgroundColor(errorColor)
-
-                resultAromaTV!!.setBackgroundColor(resultColor)
-                resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
-                resultAromaTV!!.visibility = View.VISIBLE
-            }
-        } else {
-            resultAromaTV!!.setBackgroundColor(resultColor)
-            resultShotTV!!.setBackgroundColor(resultColor)
-
-            resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
-            resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
-
-            resultAromaTV!!.visibility = View.VISIBLE
-            resultShotTV!!.visibility = View.VISIBLE
-            Toast.makeText(activity, "Berechnung erfolgreich", Toast.LENGTH_SHORT).show()
-        }
-        /*
-        TODO NUR Aromaausgabe oder nur Shotausgabe erlauben??
-        */
-    }
+//    private fun handleFails() {
+//        if (!nonFail) {
+//            if (aromaFail) {
+//                Toast.makeText(activity, "Fehler bei der Aromakonzentration", Toast.LENGTH_SHORT).show()
+//                konzAromaET!!.setBackgroundColor(errorColor)
+//                resultShotTV!!.setBackgroundColor(resultColor)
+//                resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
+//                resultShotTV!!.visibility = View.VISIBLE
+//            }
+//            if (nicFail) {
+//                Toast.makeText(activity, "Fehler bei der Zielkonzentration.", Toast.LENGTH_SHORT).show()
+//                zielKonzET!!.setBackgroundColor(errorColor)
+//
+//                resultAromaTV!!.setBackgroundColor(resultColor)
+//                resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
+//                resultAromaTV!!.visibility = View.VISIBLE
+//            }
+//            if (liquidFail) {
+//                Toast.makeText(activity, "Fehler bei der Zielliquidmenge", Toast.LENGTH_SHORT).show()
+//                zielMengeET!!.setBackgroundColor(errorColor)
+//
+//                resultShotTV!!.setBackgroundColor(resultColor)
+//                resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
+//                resultShotTV!!.visibility = View.VISIBLE
+//            }
+//            if (shotFail) {
+//                Toast.makeText(activity, "Fehler bei der Shotkonzentration", Toast.LENGTH_SHORT).show()
+//                konzShotET!!.setBackgroundColor(errorColor)
+//
+//                resultAromaTV!!.setBackgroundColor(resultColor)
+//                resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
+//                resultAromaTV!!.visibility = View.VISIBLE
+//            }
+//        } else {
+//            resultAromaTV!!.setBackgroundColor(resultColor)
+//            resultShotTV!!.setBackgroundColor(resultColor)
+//
+//            resultAromaTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", aromaMengetextViewText, aromaMenge)
+//            resultShotTV!!.text = String.format(Locale.GERMANY, "%s %.2f ml", shotMengetextViewText, shotMenge)
+//
+//            resultAromaTV!!.visibility = View.VISIBLE
+//            resultShotTV!!.visibility = View.VISIBLE
+//            Toast.makeText(activity, "Berechnung erfolgreich", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     private fun onClickResult(): View.OnClickListener {
         return View.OnClickListener {
